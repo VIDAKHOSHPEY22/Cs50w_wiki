@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Centered Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="{% url 'index' %}" class="nav-item">Home</a>
+                <a href="{% url 'new_page' %}" class="nav-item">Create Page</a>
+                <a href="{% url 'random_page' %}" class="nav-item">Random Page</a>
+            </div>
+        </nav>
+
+        <!-- Sidebar with Search -->
+        <div class="container-fluid">
+            <div class="row">
+                <aside class="sidebar col-lg-3 col-md-4">
+                    <h2>Search</h2>
+                    <form action="{% url 'search' %}" method="get" class="search-form">
+                        <label for="search-box">Search Encyclopedia:</label>
+                        <input type="text" id="search-box" name="q" placeholder="Enter search query">
+                        <button type="submit">Search</button>
+                    </form>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="main-container col-lg-9 col-md-8">
+                    {% block body %}
+                    {% endblock %}
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
